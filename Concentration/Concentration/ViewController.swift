@@ -31,6 +31,7 @@ class ViewController: UIViewController {
     @IBAction func newGame(_ sender: UIButton) {
         game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
         updateViewFromModel()
+        emojiChoices = nil
         theme = nil
     }
     
@@ -52,25 +53,25 @@ class ViewController: UIViewController {
         gameScoreLabel.text = "Score: \(game.score)"
     }
     
-    var emojiChoices = [["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"],
-                        ["🐶", "🐴", "🐧", "🦁", "🦊", "🐠", "🐮", "🐷", "🐵"],
-                        ["🍎", "🍑", "🍒", "🥝", "🍋", "🍉", "🍓", "🍌", "🍊"],
-                        ["🌮", "🌯", "🍱", "🍔", "🌭", "🍕", "🍳", "🥪", "🍝"],
-                        ["⚽️", "🏀", "🏈", "⚾️", "🎾", "🏐", "🏉", "🏸", "🏓"],
-                        ["🇯🇵", "🇺🇸", "🇰🇷", "🇬🇷", "🇨🇳", "🇸🇪", "🇨🇭", "🇳🇵", "🇩🇪"]]
-    
+    let themes = [["🦇", "😱", "🙀", "😈", "🎃", "👻", "🍭", "🍬", "🍎"],
+                  ["🐶", "🐴", "🐧", "🦁", "🦊", "🐠", "🐮", "🐷", "🐵"],
+                  ["🍎", "🍑", "🍒", "🥝", "🍋", "🍉", "🍓", "🍌", "🍊"],
+                  ["🌮", "🌯", "🍱", "🍔", "🌭", "🍕", "🍳", "🥪", "🍝"],
+                  ["⚽️", "🏀", "🏈", "⚾️", "🎾", "🏐", "🏉", "🏸", "🏓"],
+                  ["🇯🇵", "🇺🇸", "🇰🇷", "🇬🇷", "🇨🇳", "🇸🇪", "🇨🇭", "🇳🇵", "🇩🇪"]]
+    var emojiChoices: [String]!
     var emoji = [Int:String]()
     var theme: Int?
 
     func emoji(for card: Card) -> String {
-        
-        if theme == nil {
-            theme = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+        if emojiChoices == nil {
+            // arrays are value types in swift
+            emojiChoices = themes[Int(arc4random_uniform(UInt32(themes.count)))]
         }
         
         if emoji[card.identifier] == nil, emojiChoices.count > 0 {
-            let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices[theme!].count)))
-            emoji[card.identifier] = emojiChoices[theme!].remove(at: randomIndex)
+            let randomIndex = Int(arc4random_uniform(UInt32(emojiChoices.count)))
+            emoji[card.identifier] = emojiChoices.remove(at: randomIndex)
         }
         
         // we could do if let or even this:

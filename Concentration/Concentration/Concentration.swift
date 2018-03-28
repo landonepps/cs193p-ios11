@@ -19,10 +19,10 @@ class Concentration {
     var seen = [Bool]()
     
     func chooseCard(at index: Int) {
-        // a card was chosen, so increment flipCount
-        flipCount += 1
-        
         if !cards[index].isMatched {
+            // a card was chosen, so increment flipCount
+            flipCount += 1
+            
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // one card is face up and another is selected
                 // check if cards match
