@@ -9,9 +9,32 @@
 import Foundation
 
 class Concentration {
-    var cards = [Card]()
+    // let the UI get the cards, but we handle flipping in the Concentration class
+    private(set) var cards = [Card]()
     
-    var indexOfOneAndOnlyFaceUpCard: Int?
+    private var indexOfOneAndOnlyFaceUpCard: Int? {
+        get {
+            var foundIndex: Int?
+            for index in cards.indices {
+                if cards[index].isFaceUp {
+                    if foundIndex == nil {
+                        foundIndex = index
+                    }
+                    else {
+                        return nil
+                    }
+                }
+            }
+            return foundIndex
+        }
+        set {
+            // flip all cards down
+            for index in cards.indices {
+                // (index == newValue) evaluates to true for the card that is set
+                cards[index].isFaceUp = (index == newValue)
+            }
+        }
+    }
     
     var flipCount = 0
     var score = 0
@@ -19,6 +42,8 @@ class Concentration {
     var seen = [Bool]()
     
     func chooseCard(at index: Int) {
+        assert(cards.indices.contains(index),
+               "Concentration.chooseCard(at: \(index)): chosen index not in the cards")
         if !cards[index].isMatched {
             // a card was chosen, so increment flipCount
             flipCount += 1
@@ -42,25 +67,21 @@ class Concentration {
                     }
                 }
                 cards[index].isFaceUp = true
-                indexOfOneAndOnlyFaceUpCard = nil
                 
                 // mark both cards as seen
                 seen[index] = true
                 seen[matchIndex] = true
             } else {
                 // either no cards or 2 cards are face up
-                // flip all cards down
-                for flipDownIndex in cards.indices {
-                    cards[flipDownIndex].isFaceUp = false
-                }
-                // flip over current selected card and save its index
-                cards[index].isFaceUp = true
+                // use computed property to set card state
                 indexOfOneAndOnlyFaceUpCard = index
             }
         }
     }
     
     init(numberOfPairsOfCards: Int) {
+        assert(numberOfPairsOfCards > 0,
+               "Concentration.init(\(numberOfPairsOfCards)): you must have at least one pair of cards")
         for _ in 1...numberOfPairsOfCards {
             let card = Card()
             cards += [card, card]

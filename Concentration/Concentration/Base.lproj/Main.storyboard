@@ -173,19 +173,19 @@
                                 </subviews>
                             </stackView>
                             <stackView opaque="NO" contentMode="scaleToFill" distribution="fillEqually" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="app-2c-nth">
-                                <rect key="frame" x="16" y="698" width="343" height="80"/>
+                                <rect key="frame" x="40.666666666666657" y="698" width="294" height="80"/>
                                 <subviews>
                                     <stackView opaque="NO" contentMode="scaleToFill" axis="vertical" spacingType="standard" translatesAutoresizingMaskIntoConstraints="NO" id="Epo-o2-5zr">
-                                        <rect key="frame" x="0.0" y="0.0" width="167.66666666666666" height="80"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="143" height="80"/>
                                         <subviews>
-                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VIb-OU-I57">
-                                                <rect key="frame" x="0.0" y="0.0" width="167.66666666666666" height="36"/>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Flips: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" minimumScaleFactor="0.5" translatesAutoresizingMaskIntoConstraints="NO" id="VIb-OU-I57">
+                                                <rect key="frame" x="0.0" y="0.0" width="143" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
                                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Score: 0" textAlignment="center" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="r1z-Vb-lK5">
-                                                <rect key="frame" x="0.0" y="44" width="167.66666666666666" height="36"/>
+                                                <rect key="frame" x="0.0" y="44" width="143" height="36"/>
                                                 <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                                 <color key="textColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                                 <nil key="highlightedColor"/>
@@ -193,11 +193,14 @@
                                         </subviews>
                                     </stackView>
                                     <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="sm9-vX-K61">
-                                        <rect key="frame" x="175.66666666666663" y="0.0" width="167.33333333333337" height="80"/>
+                                        <rect key="frame" x="151" y="0.0" width="143" height="80"/>
                                         <fontDescription key="fontDescription" type="system" pointSize="30"/>
                                         <state key="normal" title="New Game">
                                             <color key="titleColor" red="1" green="0.57637232540000005" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
                                         </state>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="boolean" keyPath="titleLabel.adjustsFontSizeToFitWidth" value="YES"/>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <action selector="newGame:" destination="BYZ-38-t0r" eventType="touchUpInside" id="soz-Od-W5M"/>
                                         </connections>
@@ -211,9 +214,8 @@
                             <constraint firstItem="app-2c-nth" firstAttribute="bottom" secondItem="6Tk-OE-BBY" secondAttribute="bottom" id="3hY-RY-4Bs"/>
                             <constraint firstItem="app-2c-nth" firstAttribute="top" relation="greaterThanOrEqual" secondItem="13b-wb-vuf" secondAttribute="bottom" constant="8" symbolic="YES" id="Lg3-Ah-40M"/>
                             <constraint firstItem="6Tk-OE-BBY" firstAttribute="trailing" secondItem="13b-wb-vuf" secondAttribute="trailing" constant="16" id="RiI-tJ-IIq"/>
+                            <constraint firstItem="app-2c-nth" firstAttribute="centerX" secondItem="8bC-Xf-vdC" secondAttribute="centerX" id="Xf4-g9-hbr"/>
                             <constraint firstItem="13b-wb-vuf" firstAttribute="top" secondItem="6Tk-OE-BBY" secondAttribute="top" id="eRd-5m-AiK"/>
-                            <constraint firstItem="app-2c-nth" firstAttribute="trailing" secondItem="13b-wb-vuf" secondAttribute="trailing" id="ghf-Fw-VzE"/>
-                            <constraint firstItem="app-2c-nth" firstAttribute="leading" secondItem="13b-wb-vuf" secondAttribute="leading" id="kM6-B2-cY7"/>
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="6Tk-OE-BBY"/>
                     </view>
