@@ -19,7 +19,12 @@ class ViewController: UIViewController {
         return (cardButtons.count + 1) / 2
     }
     
-    @IBOutlet private weak var flipCountLabel: UILabel!
+    @IBOutlet private weak var flipCountLabel: UILabel! {
+        didSet {
+            updateFlipCountLabel()
+        }
+    }
+    
     @IBOutlet private weak var gameScoreLabel: UILabel!
     
     @IBOutlet private var cardButtons: [UIButton]!
@@ -36,8 +41,18 @@ class ViewController: UIViewController {
     @IBAction private func newGame(_ sender: UIButton) {
         game = Concentration(numberOfPairsOfCards: (cardButtons.count + 1) / 2)
         updateViewFromModel()
-        emojiChoices = nil
+        emojiChoices = nil 
         theme = nil
+    }
+    
+    private func updateFlipCountLabel() {
+        let attributes: [NSAttributedStringKey:Any] = [
+            .strokeWidth : 5.0,
+            .strokeColor : #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
+        ]
+        
+        let attributedString = NSAttributedString(string: "Flips: \(game.flipCount)", attributes: attributes)
+        flipCountLabel.attributedText = attributedString
     }
     
     private func updateViewFromModel() {
@@ -53,7 +68,8 @@ class ViewController: UIViewController {
                 button.backgroundColor = card.isMatched ? #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 0) : #colorLiteral(red: 1, green: 0.5781051517, blue: 0, alpha: 1)
             }
         }
-        flipCountLabel.text = "Flips: \(game.flipCount)"
+        
+        updateFlipCountLabel()
         gameScoreLabel.text = "Score: \(game.score)"
     }
     
