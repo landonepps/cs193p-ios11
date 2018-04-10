@@ -8,12 +8,12 @@
 
 import Foundation
 
-class Concentration {
+struct Concentration {
     // let the UI get the cards, but we handle flipping in the Concentration class
     private(set) var cards = [Card]()
     
     private var indexOfOneAndOnlyFaceUpCard: Int? {
-        get {
+        get { 
             var foundIndex: Int?
             for index in cards.indices {
                 if cards[index].isFaceUp {
@@ -41,7 +41,7 @@ class Concentration {
     // if true, the card at the corresponding index in "cards" has been seen
     var seen = [Bool]()
     
-    func chooseCard(at index: Int) {
+    mutating func chooseCard(at index: Int) {
         assert(cards.indices.contains(index),
                "Concentration.chooseCard(at: \(index)): chosen index not in the cards")
         if !cards[index].isMatched {
@@ -51,7 +51,7 @@ class Concentration {
             if let matchIndex = indexOfOneAndOnlyFaceUpCard, matchIndex != index {
                 // one card is face up and another is selected
                 // check if cards match
-                if cards[matchIndex].identifier == cards[index].identifier {
+                if cards[matchIndex] == cards[index] {
                     // match found, mark cards as matched
                     cards[matchIndex].isMatched = true
                     cards[index].isMatched = true
